@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0d12" />
+    <meta name="description" content="Create polished QR codes locally in your browser." />
+    <title>QuickQR — Private QR codes</title>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="QuickQR home"><span>Q</span> QuickQR</a>
+        <p>Private by default · nothing uploaded</p>
+      </header>
+
+      <section class="hero">
+        <div class="intro">
+          <span class="eyebrow">LOCAL QR STUDIO</span>
+          <h1>Turn anything into a<br /><em>clean QR code.</em></h1>
+          <p>Create, style, and download QR codes entirely in your browser. No account, no tracking, no uploads.</p>
+          <div class="trust"><span>● Offline-ready</span><span>● Instant export</span><span>● Local history</span></div>
+        </div>
+
+        <div class="studio">
+          <form id="qr-form">
+            <label for="content">Content</label>
+            <textarea id="content" maxlength="1200" rows="4" placeholder="Paste a link or write something…">https://github.com/catsu-byte</textarea>
+            <div class="field-row">
+              <label>Foreground <input id="dark" type="color" value="#111827" /></label>
+              <label>Background <input id="light" type="color" value="#ffffff" /></label>
+              <label>Size
+                <select id="size">
+                  <option value="512">512 px</option>
+                  <option value="768">768 px</option>
+                  <option value="1024">1024 px</option>
+                </select>
+              </label>
+            </div>
+          </form>
+          <div class="preview-card">
+            <canvas id="qr-canvas" aria-label="Generated QR code"></canvas>
+            <div class="actions">
+              <button id="download-png" type="button">Download PNG</button>
+              <button id="copy-image" class="secondary" type="button">Copy image</button>
+            </div>
+            <p id="status" role="status">Ready to scan</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="history-section">
+        <div><span class="eyebrow">RECENT</span><h2>Your local history</h2></div>
+        <button id="clear-history" class="text-button" type="button">Clear history</button>
+        <div id="history" class="history"></div>
+      </section>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
