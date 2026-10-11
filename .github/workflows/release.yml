@@ -1,0 +1,25 @@
+name: Release v0.1.0
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Build
+        run: |
+          npm ci
+          npm run build
+      - name: Package
+        run: (cd dist && zip -9r ../quickqr-v0.1.0.zip .)
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create v0.1.0 quickqr-v0.1.0.zip --title 'QuickQR v0.1.0' --notes 'First release of the private, browser-based QR code studio.'
